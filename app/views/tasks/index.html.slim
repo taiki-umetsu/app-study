@@ -1,0 +1,18 @@
+= form_with model: @task, local: true do |f|
+  .form_group
+    = f.label :name
+    br
+    = f.text_field :name
+  .form_group
+    = f.label :content
+    br
+    = f.text_area :content
+  = f.submit
+br
+table border='1'
+  - @tasks.each do |t|
+    tr
+      td= t.name
+      td= t.content
+      td= link_to '削除', t, method: :delete, data: {confirm: "タスク#{t.name}を削除していいですか？"}
+      td= link_to '編集', edit_task_path(t)
